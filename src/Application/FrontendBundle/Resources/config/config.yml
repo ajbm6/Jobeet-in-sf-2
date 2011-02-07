@@ -1,0 +1,10 @@
+parameters:
+    frontend.active_days: 30
+    frontend.jobs_per_page: 10
+    frontend.logos_dir: uploads/jobs
+    frontend.jobs_per_category: 5
+    
+services:
+    lucene_search:
+        class: Bundle\SearchBundle\Lucene\LuceneSearch
+        arguments: { luceneIndexPath: %lucene.index.path%, analyzer: %lucene.analyzer% }                     

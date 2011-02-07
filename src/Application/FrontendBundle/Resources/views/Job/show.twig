@@ -1,0 +1,43 @@
+{% extends "FrontendBundle::layout.twig" %}
+
+{% block view_css %}
+  <link href="{{ asset('css/job.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div id="job">
+  <h1>{{ job.getCompany() }}</h1>
+  <h2>{{ job.getLocation() }}</h2>
+  <h3>
+    {{ job.getPosition() }}
+    <small> - {{ job.getType() }}</small>
+  </h3>
+ 
+  {% if job.getLogo() %}
+    <div class="logo">
+      <a href="{{ job.getUrl() }}">
+        <img src="/uploads/jobs/{{ job.getLogo() }}"
+          alt="{{ job.getCompany() }} logo" />
+      </a>
+    </div>
+  {% endif %}
+ 
+  <div class="description">
+    {{ job.getDescription() }}
+  </div>
+ 
+  <h4>How to apply?</h4>
+ 
+  <p class="how_to_apply">{{ job.getHowToApply() }}</p>
+ 
+  <div class="meta">
+    <small>posted on {{ job.getCreatedAt()|date("m/d/Y") }}</small>
+  </div>
+ 
+  <div style="padding: 20px 0">
+    <a href="{{ path('editjob',{'id':job.getId()}) }}">
+      Edit
+    </a>
+  </div>
+</div>
+{% endblock %}

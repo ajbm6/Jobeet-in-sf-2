@@ -1,0 +1,33 @@
+Application\JobeetBundle\Entity\JobeetAffiliate:
+  type: entity
+  table: jobeet_affiliate  
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    url:
+      type: string
+      length: 255
+    email:
+      type: string
+      length: 255
+    token:
+      type: string
+      length: 255
+    is_activated:
+      type: smallint
+    created_at:
+      type: datetime    
+  manyToMany:
+    categoryAffiliates:
+      targetEntity: Application\JobeetBundle\Entity\JobeetCategory
+      joinTable:
+        name: jobeet_category_affiliate
+        joinColumns:
+          affiliate_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          category_id:
+            referencedColumnName: id   

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>
+      {% block title %}Jobeet - Your best job board{% endblock %}	
+    </title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- Generic JS and CSS files -->
+    <script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>    
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
+    
+    <!-- View-specific JS and CSS -->
+    {% block view_javascript %}{% endblock %}
+    {% block view_css %}{% endblock %}
+  </head>
+  
+  <body>
+    <div id="container">
+      <div id="header">
+        <div class="content">
+          <h1>
+            <a href="{{ path('frontend') }}">
+              <img src="{{ asset('images/logo.jpg') }}" alt="Jobeet Job Board" />
+            </a>
+          </h1>
+ 
+          <div id="sub_header">
+            <div class="post">
+              <h2>Ask for people</h2>
+              <div>
+                <a href="{{ path('newjob') }}">Post a Job</a>
+              </div>
+            </div>
+ 
+            <div class="search">
+              <h2>Ask for a job</h2>
+              <form action="{{ path('searchjobs') }}" method="get">
+                <input type="text" name="keywords" id="search_keywords" />
+                <input type="submit" value="search" />
+                <img id="loader" src="{{ asset('images/loader.gif') }}" style="vertical-align: middle; display: none" />
+                <div class="help">
+                  Enter some keywords (city, country, position, ...)
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div id="content">
+          {% if session.hasFlash('notice') %}
+          <div class="flash_notice">
+            {{ session.getFlash('notice') }}
+          </div>
+          {% endif %}
+ 
+          {% if session.hasFlash('error') %}
+            <div class="flash_error">
+              {{ session.getFlash('error') }}
+            </div>
+          {% endif %}
+        
+        <!--<div id="job_history">
+          Recent viewed jobs:
+          
+        </div>-->
+ 
+        <div class="content">
+          {% block body %}{% endblock %}
+        </div>
+      </div>
+ 
+      <div id="footer">
+        <div class="content">
+          <span class="symfony">
+            <img src="/images/jobeet-mini.png" />
+            powered by <a href="http://www.symfony-project.org/">
+            <img src="/images/symfony.gif" alt="symfony framework" />
+            </a>
+          </span>
+          <ul>
+            <li><a href="">About Jobeet</a></li>
+            <li class="feed">
+              
+            </li>
+            <li><a href="">Jobeet API</a></li>
+            <li class="last">
+              
+            </li>
+          </ul>
+          
+          
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

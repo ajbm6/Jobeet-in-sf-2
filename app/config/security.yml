@@ -1,0 +1,9 @@
+security.config:
+    providers:
+        main:
+            entity: { class: SecurityBundle:User, property: username }
+    firewalls:
+        backend:
+            pattern: /admin/.*
+            form-login: true
+            logout: true

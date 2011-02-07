@@ -1,0 +1,10 @@
+{% extends "FrontendBundle::layout.twig" %}
+
+{% block view_css %}
+  <link href="{{ asset('css/job.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    {% include "FrontendBundle:Form:job.twig" %}
+
+{% endblock %}

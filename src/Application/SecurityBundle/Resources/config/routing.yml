@@ -1,0 +1,11 @@
+login:
+    pattern: /login
+    defaults: { _controller: SecurityBundle:Auth:login }
+    
+_security_login:
+    pattern: /login    
+    defaults: { _controller: SecurityBundle:Auth:login }
+
+_security_check:
+    pattern: /check_login        
+    defaults: { _controller: SecurityBundle:Auth:login }

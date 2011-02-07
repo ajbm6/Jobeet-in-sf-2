@@ -1,0 +1,24 @@
+Application\JobeetBundle\Entity\JobeetCategory:
+  type: entity
+  table: jobeet_category
+  repositoryClass: Application\JobeetBundle\Entity\Repository\CategoryRepository
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name:
+      type: string
+      length: 255    
+    slug:
+      type: string
+      length: 255  
+  oneToMany:
+    jobs:
+      targetEntity: Application\JobeetBundle\Entity\JobeetJob
+      mappedBy: category  
+  manyToMany:
+    categoryAffiliates:
+      targetEntity: Application\JobeetBundle\Entity\JobeetAffiliate
+      mappedBy: categoryAffiliates    

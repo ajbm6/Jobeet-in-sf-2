@@ -1,0 +1,31 @@
+Application\SecurityBundle\Entity\User:
+  type: entity
+  table: jobeet_user  
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    username:
+      type: string
+      length: 255
+    password:
+      type: string
+      length: 255
+    email:
+      type: string
+      length: 255
+    joined_at:
+      type: datetime
+  manyToMany:
+    roles:
+      targetEntity: Application\SecurityBundle\Entity\Role
+      joinTable:
+        name: jobeet_user_roles
+        joinColumns:
+          user_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          role_id:
+            referencedColumnName: id

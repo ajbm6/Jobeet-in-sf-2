@@ -1,0 +1,25 @@
+frontend:
+  pattern:  /frontend/:locale
+  defaults: { _controller: FrontendBundle:Frontend:index, locale: en }
+
+showjob:
+  pattern: /frontend/job/show/:company/:location/:id/:position/:locale  
+  defaults: { _controller: FrontendBundle:Job:show, locale: en}
+  requirements: { id: \d+ }
+  
+editjob:
+  pattern: /frontend/job/edit/:id/:locale  
+  defaults: { _controller: FrontendBundle:Job:edit, locale: en}
+
+newjob:
+  pattern: /frontend/job/new/:locale
+  defaults: { _controller: FrontendBundle:Job:new, locale: en}
+  
+searchjobs:
+  pattern: /frontend/search/
+  defaults: { _controller: FrontendBundle:Frontend:search }  
+  
+showcategory:
+  pattern: /frontend/category/:id/:slug/:page/:locale  
+  defaults: { _controller: FrontendBundle:Category:show, page:1, locale: en}
+  requirements: { id: \d+ }  

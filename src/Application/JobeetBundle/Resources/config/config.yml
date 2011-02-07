@@ -1,0 +1,7 @@
+parameters:
+    jobeet.category_service.class: Application\JobeetBundle\Entity\Service\JobeetCategoryService
+services:
+    jobeet.category_service:
+        class: %jobeet.category_service.class%
+        calls:
+            - [setEntityManager, [@doctrine.orm.default_entity_manager]]     

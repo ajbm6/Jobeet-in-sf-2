@@ -1,0 +1,49 @@
+app.config:
+    charset:       UTF-8
+    error_handler: null
+    csrf_secret:   xxxxxxxxxx
+    router:        { resource: "%kernel.root_dir%/config/routing.yml" }
+    validation:    { enabled: true, annotations: true }
+    templating:    {} #assets_version: SomeVersionScheme
+    session:
+        default_locale: en
+        lifetime:       3600
+        auto_start:     true
+
+# Twig Configuration
+twig.config:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+frontend.config:
+    active_days: 20
+    max_jobs_per_category: 10
+
+jobeet.config: ~
+
+## Doctrine Configuration
+doctrine.dbal:
+    dbname:   jobeet2
+    user:     root
+    password: root
+    
+doctrine.orm:    
+    auto_generate_proxy_classes: true
+    mappings:
+        SecurityBundle: ~
+        JobeetBundle: ~
+
+lucene.config:
+    analyzer: Zend\Search\Lucene\Analysis\Analyzer\Common\TextNum\CaseInsensitive
+    path:     %kernel.root_dir%/cache/%kernel.environment%/lucene/sonic-index
+    
+security.config:
+    providers:
+        default:
+            password_encoder: md5
+            entity: { class: SecurityBundle:User, property: username }
+    firewalls:
+        backend:
+            pattern:    /admin/.*
+            form-login:
+                provider: default                       

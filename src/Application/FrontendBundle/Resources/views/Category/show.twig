@@ -1,0 +1,42 @@
+{% extends "FrontendBundle::layout.twig" %}
+
+{% block title %}
+    Jobs in the {{ category.getName() }} category
+{% endblock %}
+
+{% block view_css %}
+  <link href="{{ asset('css/jobs.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+ 
+<div class="category">
+  <div class="feed">
+    <a href="">Feed</a>
+  </div>
+  <h1>{{ category.getName() }}</h1>
+</div>
+ 
+<div id="jobs">
+    <table class="jobs">
+    {% for job in paginator %}
+        <tr class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+            <td class="location">
+              {{ job.getLocation() }}
+            </td>
+            <td class="position">
+              <a href="{{ path('showjob',{'company':job.getCompanySlug(), 'location': job.getLocationSlug(), 'id':job.getId(), 'position': job.getPositionSlug()}) }}">
+              {{ job.getPosition() }}
+              </a>
+            </td>
+            <td class="company">
+              {{ job.getCompany() }}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+
+{% include "FrontendBundle:Partials:paginator.twig" with {'paginator':paginator} %}
+
+{% endblock %}

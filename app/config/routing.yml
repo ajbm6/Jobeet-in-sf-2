@@ -1,0 +1,12 @@
+homepage:
+    pattern:  /
+    defaults: { _controller: FrameworkBundle:Default:index }
+    
+frontend:
+    resource: FrontendBundle/Resources/config/routing.yml 
+    
+backend:
+    resource: AdminBundle/Resources/config/routing.yml  
+    
+security:
+    resource: SecurityBundle/Resources/config/routing.yml         

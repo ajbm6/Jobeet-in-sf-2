@@ -1,0 +1,17 @@
+Application\SecurityBundle\Entity\Role:
+  type: entity
+  table: jobeet_role
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name:
+      type: string
+      length: 255    
+  manyToMany:
+    users:
+      targetEntity: Application\SecurityBundle\Entity\User
+      mappedBy: roles
+  lifecycleCallbacks: {  }

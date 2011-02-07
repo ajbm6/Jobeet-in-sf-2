@@ -1,0 +1,11 @@
+{% extends 'TwigBundle::form.twig' %}
+
+{% block field_row %}
+{% spaceless %}
+    <tr>
+        {# TODO: would be nice to rename this variable to "field" #}
+        <td>{{ form_label(child) }}</td>
+        <td>{{ form_field(child) }}</td>
+    </tr>
+{% endspaceless %}
+{% endblock field_row %}

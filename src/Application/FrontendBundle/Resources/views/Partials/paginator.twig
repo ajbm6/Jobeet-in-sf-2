@@ -1,0 +1,45 @@
+{% if paginator.count() > 1 %}
+  {% set pages = paginator.getPages() %}
+  <div class="pagination">  
+    
+    {% if pages.current != pages.firstPageInRange %}
+    <a href="{{ path('showcategory',{'id': category.getId(), 'slug': category.getSlug(), 'page': pages.firstPageInRange}) }}">
+      <img src="{{ asset('images/first.png') }}" alt="First page" title="First page" />
+    </a>    
+    {% endif %}
+ 
+    {% if pages.current > pages.firstPageInRange %}
+    <a href="{{ path('showcategory',{'id': category.getId(), 'slug': category.getSlug(), 'page': pages.current - 1}) }}">
+      <img src="{{ asset('images/previous.png') }}" alt="Previous page" title="Previous page" />
+    </a>
+    {% endif %}
+ 
+    {% for page in pages.pagesInRange %}
+      {% if page == pages.current %}
+        {{ page }}
+      {% else %}
+        <a href="{{ path('showcategory',{'id': category.getId(), 'slug': category.getSlug(), 'page': page}) }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+ 
+    {% if pages.current < pages.lastPageInRange %}
+    <a href="{{ path('showcategory',{'id': category.getId(), 'slug': category.getSlug(), 'page': pages.current + 1}) }}">
+      <img src="{{ asset('images/next.png') }}" alt="Next page" title="Next page" />
+    </a>
+    {% endif %}
+ 
+    {% if pages.current != pages.lastPageInRange %}
+    <a href="{{ path('showcategory',{'id': category.getId(), 'slug': category.getSlug(), 'page': pages.lastPageInRange}) }}">
+      <img src="{{ asset('images/last.png') }}" alt="Last page" title="Last page" />
+    </a>
+    {% endif %}
+  </div>
+{% endif %}
+ 
+<div class="pagination_desc">
+  <strong>{{ pages.totalItemCount }}</strong> jobs in this category
+ 
+  {% if paginator.count() > 1 %}
+    - page <strong>{{ pages.current }}/{{ pages.pageCount }}</strong>
+  {% endif %}
+</div>

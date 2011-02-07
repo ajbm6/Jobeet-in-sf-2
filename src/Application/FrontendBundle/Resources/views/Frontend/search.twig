@@ -1,0 +1,30 @@
+{% extends "FrontendBundle::layout.twig" %}
+
+{% block view_css %}
+  <link href="{{ asset('css/jobs.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div id="jobs">
+  <table class="jobs">    
+  {% for job in jobs %}                
+          <tr class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+            <td class="location">
+              {{ job.getLocation() }}
+            </td>
+            <td class="position">
+              <a href="{{ path('showjob',{'company':job.getCompanySlug(), 'location': job.getLocationSlug(), 'id':job.getId(), 'position': job.getPositionSlug()}) }}">
+              {{ job.getPosition() }}
+              </a>
+            </td>
+            <td class="company">
+              {{ job.getCompany() }}
+            </td>
+            <td class="category">
+              {{ job.getCategory().getName() }}
+            </td>
+          </tr>        
+  {% endfor %}
+   </table>  
+</div>
+{% endblock %}

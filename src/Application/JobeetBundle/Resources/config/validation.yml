@@ -1,0 +1,18 @@
+Application\JobeetBundle\Entity\JobeetJob:
+    properties:
+        company:
+            - NotBlank: ~
+        logo:
+            - NotBlank: ~    
+        url:
+            - NotBlank: ~
+        location:
+            - NotBlank: ~
+        position:
+            - NotBlank: ~
+        description:
+            - NotBlank: ~
+        how_to_apply:
+            - NotBlank: ~                
+        email:
+            - Email: { message: 'Enter a valid email.' }      

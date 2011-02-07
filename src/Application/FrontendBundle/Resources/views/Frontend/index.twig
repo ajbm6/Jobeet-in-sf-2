@@ -1,0 +1,50 @@
+{% extends "FrontendBundle::layout.twig" %}
+
+{% block view_css %}
+  <link href="{{ asset('css/jobs.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div id="jobs">
+  {% for category in categories %}
+    <div class="category_{{ category.getName() }}">
+      <div class="category">
+        <div class="feed">
+          <a href="">Feed</a>
+        </div>
+        <h1>
+            <a href="{{ path('showcategory',{'id':category.getId(), 'slug':category.getSlug()}) }}">
+            {{ category.getName() }}
+            </a>
+        </h1>
+      </div>
+ 
+      <table class="jobs">
+        {% for job in category.getActiveJobs() %}        
+          <tr class="{% if loop.index is odd %}odd{% else %}even{% endif %}">
+            <td class="location">
+              {{ job.getLocation() }}
+            </td>
+            <td class="position">
+              <a href="{{ path('showjob',{'company':job.getCompanySlug(), 'location': job.getLocationSlug(), 'id':job.getId(), 'position': job.getPositionSlug()}) }}">
+              {{ job.getPosition() }}
+              </a>
+            </td>
+            <td class="company">
+              {{ job.getCompany() }}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      
+      {% if category.getActiveJobsCount() > jobs_per_category %}
+      <div class="more_jobs">
+          and <a href="{{ path('showcategory',{'id':category.getId(), 'slug':category.getSlug()}) }}">{{ category.getActiveJobsCount() }}</a>
+          more...
+      </div>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
